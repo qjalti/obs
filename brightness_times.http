@@ -1,0 +1,1 @@
+GET https://api.sunrise-sunset.org/json?lat=55.808423&lng=37.706287&date=today&formatted=1&tzid=Europe/Moscow

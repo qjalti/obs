@@ -1,0 +1,1 @@
+GET https://api.open-meteo.com/v1/forecast?latitude=55.808386&longitude=37.706370&current=temperature_2m

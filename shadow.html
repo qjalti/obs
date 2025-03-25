@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Shadow</title>
+    <style>
+      body {
+        color: #fafafa;
+        font-size: 32px;
+        font-family: var(--main-font);
+        font-weight: var(--font-weight);
+        font-style: var(--font-style);
+      }
+
+      .no-sound-block {
+        position: absolute;
+        top: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, var(--bg-opacity));
+        padding: 8px 16px 0 16px;
+        border-radius: 8px;
+      }
+
+      .bottom {
+        position: absolute;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        background: rgba(0, 0, 0, var(--bg-opacity));
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+
+      .light-icon {
+        margin-right: 1rem;
+      }
+
+      .block {
+        width: 640px;
+        height: 480px;
+        /* border-radius: 16px; */
+        /* border: 8px solid #3e2723; */
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+      }
+
+      .address-block {
+        position: absolute;
+        right: 16px;
+        bottom: 16px;
+        background: rgba(0, 0, 0, var(--bg-opacity));
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+
+      .temperature_block {
+        position: absolute;
+        font-size: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        /* left: 16px; */
+        /* bottom: 16px; */
+        left: 0px;
+        bottom: 0px;
+        background: rgba(0, 0, 0, var(--bg-opacity));
+        padding: 8px 16px;
+        border-radius: 8px;
+      }
+
+      .time,
+      #weather,
+      .address,
+      .icon {
+        filter: drop-shadow(0 0 1px rgba(0, 0, 0, var(--drop-shadow-opacity)));
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="no-sound-block">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="96px"
+        viewBox="0 -960 960 960"
+        width="96px"
+        fill="#fafafa"
+        class="icon"
+      >
+        <path
+          d="M617.22-317.26 568.48-366l114-113-114-113 48.74-48.74 113 114 113-114L891.96-592l-114 113 114 113-48.74 48.74-113-114-113 114Zm-508.94-36.76v-252.2h163.59l208.61-208.37v669.18L271.87-354.02H108.28Zm303.83-288.72L301.98-537.85H176.41v115.7h125.57l110.13 105.89v-326.48ZM305.26-481Z"
+        />
+      </svg>
+    </div>
+
+    <div class="bottom">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="32px"
+        viewBox="0 -960 960 960"
+        width="32px"
+        fill="#ff00ff"
+        class="light-icon"
+      >
+        <path
+          d="M216-376v-208h528v208H216Zm236-394v-110h60v110h-60Zm297 107-42-42 68-68 42 42-68 68ZM452-80v-110h60v110h-60Zm323-110-68-68 42-42 68 68-42 42ZM211-663l-68-68 42-42 68 68-42 42Zm-26 473-42-42 68-68 42 42-68 68Zm91-246h408v-88H276v88Zm0 0v-88 88Z"
+        />
+      </svg>
+      <span class="time">08:00 AM &mdash; 10:00 PM</span>
+    </div>
+    <div class="block">
+      <div class="temperature_block">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="32px"
+          viewBox="0 -960 960 960"
+          width="32px"
+          fill="#fafafa"
+          class="m-icon"
+        >
+          <path
+            d="M480-120q-75.53 0-128.77-53.24Q298-226.47 298-302q0-49.1 24-91.55Q346-436 388-462v-286q0-38.33 26.76-65.17 26.77-26.83 65-26.83Q518-840 545-813.17q27 26.84 27 65.17v286q42 26 66 68.45T662-302q0 75.53-53.23 128.76Q555.53-120 480-120Zm.12-59q50.88 0 86.38-35.88Q602-250.75 602-302q0-37.81-18-70.41Q566-405 532-420l-20-9v-319q0-13.6-9.2-22.8-9.2-9.2-22.8-9.2-13.6 0-22.8 9.2-9.2 9.2-9.2 22.8v319l-20 9q-34 15-52 47.59-18 32.6-18 70.41 0 51.25 35.62 87.12Q429.24-179 480.12-179ZM480-302Z"
+          />
+        </svg>
+        <span id="weather"></span>
+      </div>
+    </div>
+    <div class="address-block">
+      <span class="address">Москва, Богородское</span>
+    </div>
+    <script>
+      const WEATHER_SPAN = document.getElementById('weather');
+      const ONE_MINUTE_IN_MS = 1000 * 60;
+      const PARSE_ASTRONOMICAL_DATA_INTERVAL = ONE_MINUTE_IN_MS * 15;
+      const LA = '55.80852';
+      const LO = '37.70758';
+
+      const getWeatherData = async () => {
+        try {
+          const RESPONSE = await fetch(
+            `https://api.open-meteo.com/v1/forecast?latitude=${LA}&longitude=${LO}&current=temperature_2m`
+          );
+
+          if (!RESPONSE.ok) {
+            throw new Error('Network response was not OK');
+          }
+
+          const DATA = await RESPONSE.json();
+
+          WEATHER_SPAN.innerText = `${
+            DATA.current.temperature_2m + DATA.current_units.temperature_2m
+          }`;
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          throw error;
+        }
+      };
+
+      getWeatherData();
+
+      setInterval(getWeatherData, PARSE_ASTRONOMICAL_DATA_INTERVAL);
+    </script>
+  </body>
+</html>
