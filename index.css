@@ -5,4 +5,5 @@
   --font-style: normal;
   --bg-opacity: 0.5;
   --drop-shadow-opacity: 0.33;
+  --border-radius: calc(2 * 8px);
 }

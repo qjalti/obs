@@ -21,7 +21,7 @@
         transform: translateX(-50%);
         background: rgba(0, 0, 0, var(--bg-opacity));
         padding: 8px 16px 0 16px;
-        border-radius: 8px;
+        border-radius: var(--border-radius);
       }
 
       .bottom {
@@ -31,9 +31,9 @@
         transform: translateX(-50%);
         display: flex;
         align-items: center;
-        background: rgba(0, 0, 0, var(--bg-opacity));
-        padding: 8px 16px;
-        border-radius: 8px;
+        background: rgba(13, 13, 13, var(--bg-opacity));
+        padding: calc(2 * 8px) calc(3 * 8px);
+        border-radius: var(--border-radius);
       }
 
       .light-icon {
@@ -43,8 +43,8 @@
       .block {
         width: 640px;
         height: 480px;
-        border-radius: 16px;
-        border: 8px solid #3e2723;
+        border-radius: var(--border-radius);
+        border: 8px solid rgba(13, 13, 13, var(--bg-opacity));
         position: absolute;
         bottom: 16px;
         left: 16px;
@@ -54,9 +54,9 @@
         position: absolute;
         right: 16px;
         bottom: 16px;
-        background: rgba(0, 0, 0, var(--bg-opacity));
-        padding: 8px 16px;
-        border-radius: 8px;
+        background: rgba(13, 13, 13, var(--bg-opacity));
+        padding: calc(2 * 8px) calc(3 * 8px);
+        border-radius: var(--border-radius);
       }
 
       .temperature_block {
@@ -68,8 +68,8 @@
         left: 16px;
         bottom: 16px;
         background: rgba(0, 0, 0, var(--bg-opacity));
-        padding: 8px 16px;
-        border-radius: 8px;
+        padding: calc(2 * 8px) calc(3 * 8px);
+        border-radius: var(--border-radius);
       }
 
       .time,

@@ -20,8 +20,8 @@
 
       .data-block {
         background: rgba(0, 0, 0, var(--bg-opacity));
-        padding: 8px 16px;
-        border-radius: 8px;
+        padding: calc(2 * 8px) calc(3 * 8px);
+        border-radius: var(--border-radius);
       }
 
       .darken_block,
@@ -29,6 +29,10 @@
         display: flex;
         align-items: center;
         color: #fafafa;
+      }
+
+      .darken_block {
+        margin-top: calc(2 * 8px);
       }
 
       .main-block {
@@ -40,8 +44,8 @@
       .ld-block {
         margin-top: 16px;
         background: rgba(0, 0, 0, var(--bg-opacity));
-        padding: 8px 16px;
-        border-radius: 8px;
+        padding: calc(2 * 8px) calc(3 * 8px);
+        border-radius: var(--border-radius);
         position: absolute;
       }
 
