@@ -8,7 +8,7 @@
     <style>
       body {
         color: #fafafa;
-        font-size: 32px;
+        font-size: var(--main-font-size);
         font-family: var(--main-font);
         font-weight: var(--font-weight);
         font-style: var(--font-style);
@@ -19,7 +19,7 @@
         top: 16px;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(0, 0, 0, var(--bg-opacity));
+        background: rgba(18, 18, 18, var(--bg-opacity));
         padding: 8px 16px 0 16px;
         border-radius: var(--border-radius);
       }
@@ -31,7 +31,7 @@
         transform: translateX(-50%);
         display: flex;
         align-items: center;
-        background: rgba(13, 13, 13, var(--bg-opacity));
+        background: rgba(18, 18, 18, var(--bg-opacity));
         padding: calc(2 * 8px) calc(3 * 8px);
         border-radius: var(--border-radius);
       }
@@ -44,7 +44,7 @@
         width: 640px;
         height: 480px;
         border-radius: var(--border-radius);
-        border: 8px solid rgba(13, 13, 13, var(--bg-opacity));
+        border: 8px solid rgba(18, 18, 18, 1);
         position: absolute;
         bottom: 16px;
         left: 16px;
@@ -54,20 +54,19 @@
         position: absolute;
         right: 16px;
         bottom: 16px;
-        background: rgba(13, 13, 13, var(--bg-opacity));
+        background: rgba(18, 18, 18, var(--bg-opacity));
         padding: calc(2 * 8px) calc(3 * 8px);
         border-radius: var(--border-radius);
       }
 
       .temperature_block {
         position: absolute;
-        font-size: 32px;
         display: flex;
         align-items: center;
         justify-content: flex-end;
         left: 16px;
         bottom: 16px;
-        background: rgba(0, 0, 0, var(--bg-opacity));
+        background: rgba(18, 18, 18, var(--bg-opacity));
         padding: calc(2 * 8px) calc(3 * 8px);
         border-radius: var(--border-radius);
       }
@@ -76,7 +75,9 @@
       #weather,
       .address,
       .icon {
-        filter: drop-shadow(0 0 1px rgba(0, 0, 0, var(--drop-shadow-opacity)));
+        filter: drop-shadow(
+          0 0 1px rgba(18, 18, 18, var(--drop-shadow-opacity))
+        );
       }
     </style>
   </head>
@@ -85,9 +86,9 @@
     <div class="no-sound-block">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        height="96px"
+        height="48px"
         viewBox="0 -960 960 960"
-        width="96px"
+        width="48px"
         fill="#fafafa"
         class="icon"
       >

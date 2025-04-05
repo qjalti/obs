@@ -6,4 +6,5 @@
   --bg-opacity: 0.5;
   --drop-shadow-opacity: 0.33;
   --border-radius: calc(2 * 8px);
+  --main-font-size: calc(3 * 8px);
 }
