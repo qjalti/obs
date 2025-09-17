@@ -7,19 +7,22 @@
     <title>Lorem</title>
     <style>
       body {
+        margin: 0;
         font-size: var(--main-font-size);
         color: #fafafa;
         font-family: var(--main-font);
         font-weight: var(--font-weight);
         font-style: var(--font-style);
+        width: var(--main-width);
+        height: var(--main-height);
       }
 
       .qj-drop-shadow {
-        margin-right: 1rem;
+        margin-right: 24px;
       }
 
       .data-block {
-        background: rgba(0, 0, 0, var(--bg-opacity));
+        background: rgba(18, 18, 18, var(--bg-opacity));
         padding: calc(2 * 8px) calc(3 * 8px);
         border-radius: var(--border-radius);
       }
@@ -43,7 +46,7 @@
 
       .ld-block {
         margin-top: 16px;
-        background: rgba(0, 0, 0, var(--bg-opacity));
+        background: rgba(18, 18, 18, var(--bg-opacity));
         padding: calc(2 * 8px) calc(3 * 8px);
         border-radius: var(--border-radius);
         position: absolute;
@@ -52,7 +55,9 @@
       #lighten-value,
       #darken-value,
       #date {
-        filter: drop-shadow(0 0 1px rgba(0, 0, 0, var(--drop-shadow-opacity)));
+        filter: drop-shadow(
+          0 0 1px rgba(18, 18, 18, var(--drop-shadow-opacity))
+        );
       }
     </style>
   </head>
@@ -60,7 +65,7 @@
   <body>
     <div class="main-block">
       <div class="data-block"><span id="date"></span><br /></div>
-      <div class="ld-block">
+      <div class="ld-block d-n">
         <div class="lighten_block">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -124,8 +129,8 @@
         const SUNRISE_BEGIN = moment(DATA.results.sunrise);
         const SUNSET = moment(DATA.results.sunset);
 
-        const SUNRISE_FORMATTED = SUNRISE_BEGIN.format('HH:mm');
-        const SUNSET_FORMATTED = SUNSET.format('HH:mm');
+        const SUNRISE_FORMATTED = SUNRISE_BEGIN.format('hh:mm A');
+        const SUNSET_FORMATTED = SUNSET.format('hh:mm A');
 
         LIGHTEN_DIV.innerText = SUNRISE_FORMATTED;
         DARKEN_DIV.innerText = SUNSET_FORMATTED;
@@ -139,7 +144,7 @@
 
     setInterval(getAstronomicalData, PARSE_ASTRONOMICAL_DATA_INTERVAL);
     setInterval(() => {
-      DATE_DIV.innerText = new Date().toLocaleString().replace(',', '');
+      DATE_DIV.innerText = moment().format('DD.MM.YYYY hh:mm:ss A');
     }, 1000);
   </script>
 </html>

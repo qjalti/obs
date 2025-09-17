@@ -7,6 +7,7 @@
     <title>Shadow</title>
     <style>
       body {
+        margin: 0;
         color: #fafafa;
         font-size: var(--main-font-size);
         font-family: var(--main-font);
@@ -37,7 +38,7 @@
       }
 
       .light-icon {
-        margin-right: 1rem;
+        margin-right: 24px;
       }
 
       .block {
@@ -64,8 +65,8 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        top: 16px;
-        right: 16px;
+        bottom: 16px;
+        left: 16px;
         background: rgba(18, 18, 18, var(--bg-opacity));
         padding: calc(2 * 8px) calc(3 * 8px);
         border-radius: var(--border-radius);
@@ -78,10 +79,6 @@
         filter: drop-shadow(
           0 0 1px rgba(18, 18, 18, var(--drop-shadow-opacity))
         );
-      }
-
-      .dn {
-        display: none;
       }
     </style>
   </head>
@@ -102,7 +99,7 @@
       </svg>
     </div>
 
-    <div class="bottom">
+    <div class="bottom d-n">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="32px"
@@ -115,9 +112,9 @@
           d="M216-376v-208h528v208H216Zm236-394v-110h60v110h-60Zm297 107-42-42 68-68 42 42-68 68ZM452-80v-110h60v110h-60Zm323-110-68-68 42-42 68 68-42 42ZM211-663l-68-68 42-42 68 68-42 42Zm-26 473-42-42 68-68 42 42-68 68Zm91-246h408v-88H276v88Zm0 0v-88 88Z"
         />
       </svg>
-      <span class="time">07:00 AM &mdash; 09:45 PM</span>
+      <span class="time">06:00 AM &mdash; 08:45 PM</span>
     </div>
-    <div class="block dn">
+    <div class="block d-n">
       <!-- <div class="temperature_block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -144,13 +141,13 @@
         class="m-icon"
       >
         <path
-          d="M480-120q-75.53 0-128.77-53.24Q298-226.47 298-302q0-49.1 24-91.55Q346-436 388-462v-286q0-38.33 26.76-65.17 26.77-26.83 65-26.83Q518-840 545-813.17q27 26.84 27 65.17v286q42 26 66 68.45T662-302q0 75.53-53.23 128.76Q555.53-120 480-120Zm.12-59q50.88 0 86.38-35.88Q602-250.75 602-302q0-37.81-18-70.41Q566-405 532-420l-20-9v-319q0-13.6-9.2-22.8-9.2-9.2-22.8-9.2-13.6 0-22.8 9.2-9.2 9.2-9.2 22.8v319l-20 9q-34 15-52 47.59-18 32.6-18 70.41 0 51.25 35.62 87.12Q429.24-179 480.12-179ZM480-302Z"
+          d="M220-80v-66.67h226.67V-320H360q-83 0-141.5-58.5T160-520q0-60 33-110.5t89-73.5q9-75 65.5-125.5T480-880q76 0 132.5 50.5T678-704q56 23 89 73.5T800-520q0 83-58.5 141.5T600-320h-86.67v173.33h233.34V-80H220Zm140-306.67h240q55.56 0 94.44-38.89 38.89-38.88 38.89-94.44 0-40-22.83-73t-59.17-49L616-657.33 611.33-696q-6.66-50.33-43.95-83.83-37.29-33.5-87.38-33.5-50.09 0-87.38 33.5-37.29 33.5-43.95 83.83L344-657.33 308.67-642q-36.34 16-59.17 49.15t-22.83 72.93q0 55.25 38.89 94.25 38.88 39 94.44 39ZM480-600Z"
         />
       </svg>
       <span id="weather"></span>
     </div>
     <div class="address-block">
-      <span class="address">Москва, Богородское</span>
+      <span class="address">Задержка видео 1m 23s</span>
     </div>
     <script>
       const WEATHER_SPAN = document.getElementById('weather');
