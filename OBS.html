@@ -59,6 +59,16 @@
           0 0 1px rgba(18, 18, 18, var(--drop-shadow-opacity))
         );
       }
+
+      .knopa-timer {
+        background: rgba(18, 18, 18, var(--bg-opacity));
+        padding: calc(2 * 8px) calc(3 * 8px);
+        border-radius: var(--border-radius);
+        left: 50%;
+        transform: translateX(-50%);
+        position: fixed;
+        bottom: 16px;
+      }
     </style>
   </head>
 
@@ -97,22 +107,26 @@
           <span id="darken-value"></span>
         </div>
       </div>
+      <div class="knopa-timer">
+        Кнопа проживает в квартире <span id="knopaTimer"></span>
+      </div>
     </div>
   </body>
 
   <script src="moment.min.js"></script>
 
   <script>
-    const LIGHTEN_DIV = document.getElementById('lighten-value');
-    const DARKEN_DIV = document.getElementById('darken-value');
+    const LIGHTEN_DIV = document.getElementById("lighten-value");
+    const DARKEN_DIV = document.getElementById("darken-value");
+    const KNOPA_TIMER = document.getElementById("knopaTimer");
 
     const ONE_HOUR_IN_MS = 1000 * 60 * 60;
     const ONE_MINUTE_IN_MS = 1000 * 60;
     const PARSE_ASTRONOMICAL_DATA_INTERVAL = ONE_MINUTE_IN_MS;
-    const DATE_DIV = document.getElementById('date');
+    const DATE_DIV = document.getElementById("date");
 
-    const LA = '55.80852';
-    const LO = '37.70758';
+    const LA = "55.80852";
+    const LO = "37.70758";
 
     const getAstronomicalData = async () => {
       try {
@@ -121,7 +135,7 @@
         );
 
         if (!RESPONSE.ok) {
-          throw new Error('Network response was not OK');
+          throw new Error("Network response was not OK");
         }
 
         const DATA = await RESPONSE.json();
@@ -129,13 +143,13 @@
         const SUNRISE_BEGIN = moment(DATA.results.sunrise);
         const SUNSET = moment(DATA.results.sunset);
 
-        const SUNRISE_FORMATTED = SUNRISE_BEGIN.format('hh:mm A');
-        const SUNSET_FORMATTED = SUNSET.format('hh:mm A');
+        const SUNRISE_FORMATTED = SUNRISE_BEGIN.format("hh:mm A");
+        const SUNSET_FORMATTED = SUNSET.format("hh:mm A");
 
         LIGHTEN_DIV.innerText = SUNRISE_FORMATTED;
         DARKEN_DIV.innerText = SUNSET_FORMATTED;
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
         throw error;
       }
     };
@@ -144,7 +158,23 @@
 
     setInterval(getAstronomicalData, PARSE_ASTRONOMICAL_DATA_INTERVAL);
     setInterval(() => {
-      DATE_DIV.innerText = moment().format('DD.MM.YYYY hh:mm:ss A');
+      DATE_DIV.innerText = moment().format("DD.MM.YYYY hh:mm:ss A");
     }, 1000);
+
+    /**
+     * Таймер проживания кнопы в квартире
+     */
+    setInterval(() => {
+      const NOW = moment();
+      const DATE = moment([2025, 8, 4, 15, 0, 0]);
+      const diffInMs = NOW.diff(DATE);
+      const YEARS = moment.duration(diffInMs).years();
+      const MONTHS = moment.duration(diffInMs).months();
+      const DAYS = moment.duration(diffInMs).days();
+      const HOURS = moment.duration(diffInMs).hours();
+      const MINUTES = moment.duration(diffInMs).minutes();
+      const SECONDS = moment.duration(diffInMs).seconds();
+      KNOPA_TIMER.innerText = `${MONTHS}mo, ${DAYS}d`;
+    }, 1 * 1000);
   </script>
 </html>
